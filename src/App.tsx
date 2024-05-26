@@ -1,11 +1,10 @@
-import React from "react"; // Importing React is necessary for JSX
-import Message from "./Message"; // Importing the Message component using a relative path
+import React from "react";
+import ListGroup from "./components/ListGroup";
 
 function App() {
   return (
     <div>
-      {/* Rendering the Message component */}
-      <Message />
+      <ListGroup />
     </div>
   );
 }
