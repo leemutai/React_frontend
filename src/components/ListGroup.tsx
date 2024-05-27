@@ -1,34 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
-function ListGroup() {
-  let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
-  //   items = [];
+interface Props {
+  items: string[];
+  heading: string;
+}
 
-  //  const getMessage = () => {
-  //     return ;;
-  //  }
-
-  //   if (items.length === 0) {
-  //     // Conditional rendering
-  //     return (
-  //       <>
-  //         <h1>List</h1>
-  //         <p>No item found</p>
-  //       </>
-  //     );
-  //   }
+const ListGroup: React.FC<Props> = ({ items, heading }) => {
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
   return (
     <>
-      <h1>List</h1>
-      {/* {items.length === 0 ? <p>No item found</p> : null} */}
+      <h1>{heading}</h1>
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <li
-            className="list-group-item"
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
             key={item}
-            onClick={() => console.log("Clicked")}
+            onClick={() => setSelectedIndex(index)}
           >
             {item}
           </li>
@@ -36,6 +29,6 @@ function ListGroup() {
       </ul>
     </>
   );
-}
+};
 
 export default ListGroup;
